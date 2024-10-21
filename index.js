@@ -1,7 +1,11 @@
 const axios = require("axios");
 
+const startDate = process.env.START_DATE;
+const endDate = process.env.END_DATE;
+const token = process.env.TOKEN;
+
 axios
-    .get("https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-10-14&end_date=2024-10-18&api_key=II1sjzN43X13j2PXI3Cx4sQBfHQT5cc5B8qKGr2V")
+    .get(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDate}&end_date=${endDate}&api_key=${token}`)
     .then((response) => {
         console.log("Data received:", response.data);
     })
