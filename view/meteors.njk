@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meteors</title>
+</head>
+<body>
+    <h1>Meteors Info</h1>
+        {% if wereDangerousMeteors %}
+            <p>This data include dangerous meteors</p>
+        {% endif %}
+        {% if count %}
+            <p>Number of sentry objects: {{ count }}</p>
+        {% endif %}
+    <ul>
+        {% for meteor in data %}
+        <p />
+            <li>
+                Name: {{ meteor.name }}<br>
+                Diameter (meters): {{ meteor.diameter_meters }}<br>
+                Potentially Hazardous: {{ meteor.is_potentially_hazardous_asteroid}}<br>
+                Close Approach Date: {{ meteor.close_approach_date_full }}<br>
+                Relative Velocity (km/s): {{ meteor.relative_velocity_kps }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

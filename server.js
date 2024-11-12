@@ -3,6 +3,7 @@ import config from "config";
 
 import meteorController from "./controller/meteorController.js";
 import errorHandler from "./middleware/errorMiddleware.js";
+import nunjucks from "nunjucks";
 
 const app = express();
 
@@ -14,3 +15,10 @@ app.use(errorHandler)
 app.listen(port, (error) => {
     error ? console.log(error) : console.log(`Server is running on port: ${port}`);
 })
+
+nunjucks.configure('./view', {
+    autoescape: true,
+    express: app
+});
+
+app.set('view engine', 'njk');

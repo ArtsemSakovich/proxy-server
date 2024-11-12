@@ -7,7 +7,12 @@ router.get('/meteors', async (req, res, next) => {
     try {
         const { start_date, end_date, count, were_dangerous_meteors } = req.query;
         const meteors = await getSimplifiedMeteorsData(start_date, end_date, count, were_dangerous_meteors);
-        res.json(meteors);
+
+        res.render('meteors', {
+            data: meteors.data,
+            count: meteors.count,
+            wereDangerousMeteors: meteors.wereDangerousMeteors
+        });
     } catch (error) {
         next(error);
     }
