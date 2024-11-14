@@ -1,9 +1,6 @@
-import {getMeteorsData} from "../service/meteorService.js";
-import express from "express";
+import {getMeteorsData} from "../../service/meteorService.js";
 
-const router = express.Router();
-
-router.get('/meteors', async (req, res, next) => {
+async function getMeteorDataController(req, res, next) {
     try {
         const { start_date, end_date, count, were_dangerous_meteors } = req.query;
         const meteors = await getMeteorsData(start_date, end_date, count, were_dangerous_meteors);
@@ -16,6 +13,6 @@ router.get('/meteors', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-});
+}
 
-export default router;
+export {getMeteorDataController}

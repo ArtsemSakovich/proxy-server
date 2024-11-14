@@ -1,17 +1,15 @@
 import express from "express";
 import config from "config";
-import meteorController from "./controller/meteorController.js";
-import roverController from "./controller/roverController.js";
 import errorHandler from "./middleware/errorMiddleware.js";
 import nunjucks from "nunjucks";
+import router from "./routes/router.js";
 
 const app = express();
 
 const port = config.get("port");
 
 app.use(express.json());
-app.use(meteorController);
-app.use(roverController);
+app.use('/', router);
 app.use(errorHandler)
 
 app.listen(port, (error) => {
