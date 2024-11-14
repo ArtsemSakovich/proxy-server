@@ -1,11 +1,12 @@
 import config from "config";
 import {formatMeteorData} from "../util/utils.js";
-import {getMeteorsData} from "../repository/meteorRepository.js";
+import {fetchMeteorsData} from "../repository/meteorRepository.js";
 
-export const getSimplifiedMeteorsData = async (startDate, endDate, count, wereDangerousMeteors) => {
+async function getMeteorsData(startDate, endDate, count, wereDangerousMeteors) {
+    const nasaApiUrl = config.get("nasaApiUrl");
     const token = config.get("token");
 
-    const meteorsData = await getMeteorsData(startDate, endDate, token);
+    const meteorsData = await fetchMeteorsData(nasaApiUrl, startDate, endDate, token);
     const formattedMeteorData = Object.values(meteorsData).flatMap(formatMeteorData);
 
     if (count) {
@@ -25,4 +26,6 @@ export const getSimplifiedMeteorsData = async (startDate, endDate, count, wereDa
         count: formattedMeteorData.count,
         wereDangerousMeteors: formattedMeteorData.wereDangerousMeteors
     };
-};
+}
+
+export { getMeteorsData };
