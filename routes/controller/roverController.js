@@ -4,7 +4,9 @@ async function getRoverImageController(req, res, next) {
     try {
         const {apiKey} = req.body;
         const imageUrl = await getRoverImage(apiKey);
-        res.send(imageUrl);
+        res.render('roverImage', {
+            imageUrl: imageUrl
+        });
     } catch (error) {
         next(error);
     }
