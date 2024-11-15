@@ -1,14 +1,37 @@
 {
   "name": "proxy-server",
   "scripts": {
-    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node --env-file=.env server.js"
+    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node --env-file=.env server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@eslint/js": "^9.13.0",
     "axios": "^1.7.7",
     "config": "^3.3.12",
     "cross-env": "^7.0.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.1.0",
     "express": "^4.21.1",
+    "globals": "^15.11.0",
     "joi": "^17.13.3",
     "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.1",
+    "@eslint/eslintrc": "^3.1.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.1.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   }
 }
