@@ -1,3 +1,4 @@
+import sentry from "./instrument.js";
 import express from "express";
 import config from "config";
 import errorHandler from "./middleware/errorMiddleware.js";
